@@ -8,8 +8,6 @@ This repository contains optimization models developed for the United Nations **
 ├── Basic_Linear_Programming_Model_Scenario_1.py
 ├── Basic_Linear_Programming_Model_Scenario_2.py
 ├── Mixed_Integer_Lineer_Programming_Model.py
-├── SupplyChain_LP_Report_Edited.docx
-├── Assignment OPT for DS.pptx
 ├── README.md
 ```
 
