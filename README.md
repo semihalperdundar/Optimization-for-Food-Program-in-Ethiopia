@@ -58,9 +58,9 @@ pip install cvxpy numpy pandas openpyxl
 
 ## 🚀 Running the Notebooks
 Each `.ipynb` file can be opened and executed in **Jupyter Notebook** or **Google Colab**. Follow the structure:
-1. **LP model**: `Opt for DS LP Version IV.ipynb`
-2. **MILP model**: `Opt for DS MILP Version IV.ipynb`
-3. **Scenario analysis**: `Opt for DS Scenarios Version IV.ipynb`
+1. **LP model**: `Basic_Linear_Programming_Model_Scenario_1.py`
+2. **MILP model**: `Mixed_Integer_Lineer_Programming_Model.py`
+3. **Scenario analysis**: `Basic_Linear_Programming_Model_Scenario_2.py`
 
 Ensure all cells are run sequentially and required libraries are installed.
 
