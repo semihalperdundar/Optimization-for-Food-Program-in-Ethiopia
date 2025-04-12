@@ -21,48 +21,64 @@ This repository contains optimization models developed for the United Nations **
 
 ## 🎯 Objective
 
-The goal of this project is to **minimize total supply chain costs** while ensuring that all food demand and nutritional requirements are met for Ethiopian beneficiaries. The model takes into account:
+The goal of this project is to **minimize total supply chain costs** while ensuring that all food demand and nutritional requirements are met for Ethiopian beneficiaries. The model incorporates:
 
-- **Procurement decisions**: Selecting suppliers and determining the quantity of food to be purchased.
-- **Sea and land transportation**: Optimal routing from suppliers to ports, warehouses, and finally to beneficiary camps.
-- **Handling and storage constraints**: Port and warehouse capacities.
-- **Nutritional requirements**: Ensuring that distributed food meets the dietary needs of beneficiaries.
+- **Procurement planning**: Optimal allocation from multiple suppliers
+- **Transportation logistics**: Cost-effective sea and land routing
+- **Warehouse and port capacities**: Operational constraints
+- **Nutritional targets**: Satisfying dietary requirements for all camps
+- **Scenario analysis**: Testing model robustness under real-world uncertainties
+
+## 🔬 Methodology
+
+- **Linear Programming (LP)**: Used to model base scenarios with continuous decision variables.
+- **Mixed Integer Linear Programming (MILP)**: Introduced binary variables for on/off supplier decisions.
+- **Scenario Simulation**: Modeled supply chain under altered demand, capacity restrictions, and dietary relaxation.
+- **Solver**: All models executed in Python using **CVXPY**.
+
+## ⚙️ Constraint Types
+
+The models incorporate the following key constraints:
+
+- **Supplier Capacity Constraints**: Total dispatched commodities must not exceed supplier capacity.
+- **Port Capacity Constraints**: Each port has a maximum intake capacity.
+- **Warehouse Capacity & Balance**: Warehouses must maintain material balance and not exceed storage limits.
+- **Port Balance**: Flow into each port equals flow out to warehouses.
+- **Camp Demand Constraints**: Each camp must receive sufficient food for its population (e.g., 300g/day/person).
+- **Nutritional Constraints**: Fulfillment of daily nutrient requirements (protein, energy, etc.) across 30 days.
+- **Route Availability Constraints**: Shipments are only allowed along defined sea and land transport routes.
+- **Non-negativity & Integer Constraints**: All flows must be non-negative; integer enforcement in MILP model.
 
 ## 🛠️ Installation & Setup
 
-To run the optimization models, install the required dependencies:
-
+Install required libraries:
 ```bash
 pip install cvxpy numpy pandas openpyxl
 ```
 
-## 🚀 Running the Models
+## 🚀 Running the Notebooks
+Each `.ipynb` file can be opened and executed in **Jupyter Notebook** or **Google Colab**. Follow the structure:
+1. **LP model**: `Opt for DS LP Version IV.ipynb`
+2. **MILP model**: `Opt for DS MILP Version IV.ipynb`
+3. **Scenario analysis**: `Opt for DS Scenarios Version IV.ipynb`
 
-To execute the LP model:
-```bash
-python Basic_Linear_Programming_Model_Scenario_1.py
-```
-
-To execute the MILP model:
-```bash
-python Mixed_Integer_Lineer_Programming_Model.py
-```
+Ensure all cells are run sequentially and required libraries are installed.
 
 ## 📊 Results & Sensitivity Analysis
 
-The **SupplyChain_LP_Report_Edited.docx** provides a detailed analysis of different scenarios, including:
+- **Base LP Model Cost**: ~$99.0M (fully satisfies demand and nutrition)
+- **MILP Model Cost**: ~$25.4M (more realistic constraints, lower cost)
+- **Scenario Simulations**:
+  - +10% Demand → Cost increases significantly
+  - -50% Port Capacity → Transport cost reallocation
+  - Relaxed Nutrition → Minor cost improvement
 
-- **Base Case**: Standard supply chain optimization under normal conditions.
-- **Scenario 1**: Increased demand (+10%) and its impact on costs.
-- **Scenario 2**: Reduction of primary port capacity (-50%) and resulting changes in logistics.
-- **Scenario 3**: Relaxation of nutritional requirements (90% of baseline) and its cost implications.
+## 🔍 Key Insights
+- LP model gives feasible, interpretable baseline solution.
+- MILP introduces practical restrictions like supplier enablement.
+- Scenario stress tests highlight sensitivity to port constraints and supplier flexibility.
+- Strategic investments in **alternative ports** and **supplier diversification** improve robustness.
 
-## 📌 Key Findings
-
-- **LP Model Cost**: $33,546,944.93 (Base Scenario, fully meeting demand and nutritional needs).
-- **MILP Model Cost**: $30,303,438.11 (More practical supplier activation decisions, reducing costs by ~9.7%).
-- **Port capacity and procurement constraints** were the most sensitive factors affecting overall costs.
-- **Strategic investments in supplier flexibility and port infrastructure** would improve efficiency.
 
 ## 🔍 Recommendations
 
